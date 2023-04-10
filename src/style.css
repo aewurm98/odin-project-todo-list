@@ -15,12 +15,16 @@ body {
   align-items: center;
   gap: 1rem;
   height: 100vh;
+  background-color: rgba(239, 236, 234, 0.94);
 }
+
+/* ------HEADER SECTION------ */
 
 .header {
   width: 100%;
   padding: 15px 30px;
   display: flex;
+  gap: 2rem;
   justify-content: space-between;
   align-items: center;
   background-color: orange;
@@ -35,6 +39,7 @@ body {
 
 .avatar {
   max-width: 5rem;
+  cursor: pointer;
 }
 
 .name {
@@ -44,6 +49,7 @@ body {
   border-radius: 5px;
   background-color: black;
   color: orange;
+  cursor: pointer;
 }
 
 .container {
@@ -65,6 +71,7 @@ body {
   padding-left: 25px;
   padding-right: 25px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .search-form {
@@ -99,7 +106,127 @@ label,
   padding-left: 25px;
   padding-right: 25px;
   border-radius: 10px;
+  cursor: pointer;
 }
+
+/* ------CONTAINER SECTION------ */
+
+.container {
+  width: 100%;
+  padding: 15px 30px;
+  display: flex;
+  gap: 2rem;
+  position: relative;
+  align-items: start;
+  justify-content: start;
+}
+
+.blank-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+
+.input-form {
+  padding: 15px;
+  background-color: white;
+  box-shadow: 1px 1px 1px 1px black;
+  position: absolute;
+  width: 50%;
+  border-radius: 15px;
+  top: 25%;
+  left: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  display: none;
+  z-index: 10;
+}
+
+.input-form.active {
+  display: flex;
+}
+
+.form-close {
+  padding: 10px;
+  width: 2.2rem;
+  text-align: center;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  font-weight: 800;
+  position: relative;
+  top: -1.5rem;
+  left: -52%;
+  cursor: pointer;
+}
+
+.form-element {
+  width: 80%;
+  padding: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-btn {
+  color: white;
+  background-color: black;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.project {
+  padding: 15px;
+  height: 100%;
+  min-width: 200px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  border-radius: 10px;
+}
+
+.proj-delete {
+  padding: 5px;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  position: relative;
+  top: -1.5rem;
+  left: -58%;
+  cursor: pointer;
+}
+
+.proj-name {
+  padding: 5px;
+  width: 100%;
+  font-size: 1.5rem;
+  background-color: black;
+  color: white;
+}
+.proj-description {
+  padding: 5px;
+  width: 100%;
+  font-size: 0.75rem;
+}
+
+.proj-content {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ------FOOTER SECTION------ */
 
 .footer {
   width: 100%;
