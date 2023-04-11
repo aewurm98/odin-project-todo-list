@@ -147,14 +147,11 @@ export default function () {
   taskProjLabel.classList.add('form-element');
 
   const taskProjInput = document.createElement('select');
-  // taskProjInput.setAttribute('type', 'text');
   taskProjInput.placeholder = 'Project Name';
   taskProjInput.setAttribute('form', 'task-form');
   taskProjInput.required = true;
   taskProjInput.id = 'taskProjField';
   taskProjInput.classList.add('form-element');
-  // taskProjInput.setAttribute('list', 'project-list');
-  // taskProjInput.setAttribute('autocomplete', 'off');
 
   const taskSubmit = document.createElement('button');
   taskSubmit.setAttribute('type', 'submit');

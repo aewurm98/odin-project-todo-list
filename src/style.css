@@ -201,26 +201,35 @@ label,
   border-radius: 10px;
 }
 
+.proj-delete,
+.proj-name,
+.proj-description,
+.proj-content {
+  position: relative;
+  top: -1.5rem;
+}
+
 .proj-delete {
   padding: 5px 8px;
   background-color: black;
   color: white;
   border-radius: 50%;
-  position: relative;
-  top: -1.5rem;
   left: -55%;
   cursor: pointer;
 }
 
 .proj-name {
-  padding: 5px;
+  position: relative;
+  top: -1.5rem;
+  padding: 5px 10px;
   width: 100%;
   font-size: 1.5rem;
   background-color: black;
   color: white;
+  border-radius: 5px;
 }
 .proj-description {
-  padding: 5px;
+  padding: 5px 10px;
   width: 100%;
   font-size: 0.75rem;
 }

@@ -33,23 +33,24 @@ export default class Project {
     this._description = value;
   }
 
+  // TODO: Bind methods and re-add 'this.' notation to access appropriate fields'
   tasks = [];
 
   getTasks = () => {
-    return this._tasks;
+    return tasks;
   };
 
   getTaskNames = () => {
-    return this._tasks.map((x) => x.name);
+    return tasks.map((x) => x.name);
   };
 
   addTask = (task) => {
-    this._tasks.push(task);
+    tasks.push(task);
   };
 
   removeTask = (task) => {
-    const idx = this._taskNames.indexOf(task.name);
-    this._tasks.splice(idx, 1);
+    const idx = gettaskNames().indexOf(task.name);
+    tasks.splice(idx, 1);
   };
 }
 

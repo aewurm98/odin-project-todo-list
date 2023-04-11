@@ -26,6 +26,7 @@ const formEscapes = document.querySelectorAll('.form-close');
 // Proj Event Listeners
 addProj.addEventListener('click', Modals.default);
 submitProj.addEventListener('click', Project.addProject);
+submitTask.addEventListener('click', Todos.addTask);
 
 // Modal Event Listeners
 formEscapes.forEach((btn) => btn.addEventListener('click', Modals.deactivate));
