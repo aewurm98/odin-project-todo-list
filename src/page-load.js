@@ -34,6 +34,7 @@ export default function () {
   const newProj = document.createElement('div');
   newProj.classList.add('new-proj');
   newProj.classList.add('btn');
+  newProj.classList.add('active');
   newProj.textContent = '+ Project';
 
   const newTask = document.createElement('div');
@@ -128,6 +129,33 @@ export default function () {
   taskDescriptionInput.id = 'taskDescriptionField';
   taskDescriptionInput.classList.add('form-element');
 
+  const taskDateLabel = document.createElement('label');
+  taskDateLabel.for = 'taskDateField';
+  taskDateLabel.textContent = 'Due Date:';
+  taskDateLabel.classList.add('form-element');
+
+  const taskDateInput = document.createElement('input');
+  taskDateInput.setAttribute('type', 'date');
+  taskDateInput.placeholder = 'DD/MM/YYYY';
+  taskDateInput.required = true;
+  taskDateInput.id = 'taskDateField';
+  taskDateInput.classList.add('form-element');
+
+  const taskProjLabel = document.createElement('label');
+  taskProjLabel.for = 'taskProjField';
+  taskProjLabel.textContent = 'Assign this task to a Project:';
+  taskProjLabel.classList.add('form-element');
+
+  const taskProjInput = document.createElement('select');
+  // taskProjInput.setAttribute('type', 'text');
+  taskProjInput.placeholder = 'Project Name';
+  taskProjInput.setAttribute('form', 'task-form');
+  taskProjInput.required = true;
+  taskProjInput.id = 'taskProjField';
+  taskProjInput.classList.add('form-element');
+  // taskProjInput.setAttribute('list', 'project-list');
+  // taskProjInput.setAttribute('autocomplete', 'off');
+
   const taskSubmit = document.createElement('button');
   taskSubmit.setAttribute('type', 'submit');
   taskSubmit.classList.add('form-btn');
@@ -140,6 +168,10 @@ export default function () {
   taskForm.appendChild(taskNameInput);
   taskForm.appendChild(taskDescriptionLabel);
   taskForm.appendChild(taskDescriptionInput);
+  taskForm.appendChild(taskDateLabel);
+  taskForm.appendChild(taskDateInput);
+  taskForm.appendChild(taskProjLabel);
+  taskForm.appendChild(taskProjInput);
   taskForm.appendChild(taskSubmit);
 
   // Append add task form to container
@@ -182,7 +214,7 @@ export default function () {
   projSubmit.id = 'projSubmit';
 
   // Append sub-components of project form
-  projectForm.appendChild(formClose);
+  projectForm.appendChild(formClose.cloneNode(true));
   projectForm.appendChild(projNameLabel);
   projectForm.appendChild(projNameInput);
   projectForm.appendChild(projDescriptionLabel);

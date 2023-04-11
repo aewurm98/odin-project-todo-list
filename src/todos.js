@@ -18,4 +18,10 @@ import {
   isToday,
 } from 'date-fns';
 
-export default function () {}
+export default class Task {}
+
+export function addTask(e) {}
+
+export function removeTask(e) {}
+
+export function modifyTask(e) {}

@@ -14,7 +14,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  height: 100vh;
+  min-height: 100vh;
   background-color: rgba(239, 236, 234, 0.94);
 }
 
@@ -66,11 +66,17 @@ body {
 
 .new-proj.btn,
 .new-task.btn {
-  color: white;
-  background-color: black;
+  color: darkgrey;
+  background-color: lightgrey;
   padding-left: 25px;
   padding-right: 25px;
   border-radius: 10px;
+}
+
+.new-proj.btn.active,
+.new-task.btn.active {
+  color: white;
+  background-color: black;
   cursor: pointer;
 }
 
@@ -115,6 +121,7 @@ label,
   width: 100%;
   padding: 15px 30px;
   display: flex;
+  flex-wrap: wrap;
   gap: 2rem;
   position: relative;
   align-items: start;
@@ -136,7 +143,7 @@ label,
   position: absolute;
   width: 50%;
   border-radius: 15px;
-  top: 25%;
+  top: 15%;
   left: 25%;
   display: flex;
   flex-direction: column;
@@ -180,13 +187,14 @@ label,
 
 .project {
   padding: 15px;
-  height: 100%;
-  min-width: 200px;
+  min-height: 350px;
+  min-width: 250px;
   display: flex;
   position: relative;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  background-color: white;
   border-style: solid;
   border-color: black;
   border-width: 1px;
@@ -194,13 +202,13 @@ label,
 }
 
 .proj-delete {
-  padding: 5px;
+  padding: 5px 8px;
   background-color: black;
   color: white;
   border-radius: 50%;
   position: relative;
   top: -1.5rem;
-  left: -58%;
+  left: -55%;
   cursor: pointer;
 }
 
