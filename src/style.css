@@ -243,6 +243,78 @@ label,
   gap: 0.5rem;
 }
 
+.task {
+  width: 100%;
+  padding: 5px 10px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.5rem;
+  border-style: solid;
+  border-color: orange;
+  border-width: 1px;
+  border-radius: 5px;
+  background-color: orange;
+}
+
+.task-delete {
+  padding: 3px 7px;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  left: -8%;
+  cursor: pointer;
+}
+
+.task-delete,
+.task-name,
+.task-description,
+.task-date,
+.task-project,
+.task-complete {
+  position: relative;
+  top: -0.6rem;
+}
+
+.task-name {
+  width: 100%;
+  color: orange;
+  background-color: black;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 1rem;
+}
+
+.task-description,
+.task-date,
+.task-project {
+  width: 100%;
+  padding: 5px 10px;
+  font-size: 0.75rem;
+}
+
+.task-date::before {
+  content: 'Due: ';
+  font-weight: 800;
+}
+
+.task-project::before {
+  content: 'Project: ';
+  font-weight: 800;
+}
+
+.task-complete {
+  margin: 5px 10px;
+  width: 100%;
+  align-self: start;
+}
+
+.task-complete::before {
+  content: 'Status: ';
+  font-weight: 800;
+}
+
 /* ------FOOTER SECTION------ */
 
 .footer {

@@ -1,33 +1,18 @@
 // Import date modification functions
 
-import {
-  add,
-  compareAsc,
-  format,
-  formatDistance,
-  formatDistanceToNow,
-  formatRelative,
-  isAfter,
-  isBefore,
-  isDate,
-  isEqual,
-  isPast,
-  isFuture,
-  set,
-  sub,
-  daysToWeeks,
-  isToday,
-} from 'date-fns';
+import { format, isPast, parseISO } from 'date-fns';
 
 // Import key information from Projects
 import projectDefault, * as Project from './projects.js';
 
 export default class Task {
+  #complete;
   constructor(name, description, dueDate, project) {
     this.name = name;
     this.description = description;
     this.dueDate = dueDate;
     this.project = project;
+    this.#complete = false;
   }
 
   get name() {
@@ -59,27 +44,25 @@ export default class Task {
   }
 
   set dueDate(value) {
+    if (!value) return;
+
     if (isPast(value)) {
       alert('Due date has already passed');
       return;
     }
-    this._dueDate = format(new Date(value), 'LLL do y');
+    this._dueDate = value;
   }
 
   getProject = () => {
     return this._project;
   };
 
-  // TODO: Bind methods and re-add 'this.' notation to access appropriate fields'
-
-  complete = false;
-
-  markComplete = () => {
-    complete = true;
+  getComplete = () => {
+    return this.#complete;
   };
 
-  markIncomplete = () => {
-    complete = false;
+  setComplete = (value) => {
+    this.#complete = value;
   };
 }
 
@@ -89,13 +72,17 @@ export function addTask(e) {
   // Retrieve values from form
   const taskName = document.getElementById('taskNameField').value;
   const taskDescription = document.getElementById('taskDescriptionField').value;
-  const taskDueDate = document.getElementById('taskDateField').value;
+  const unformattedDate = document.getElementById('taskDateField').value;
   const taskProject = document.getElementById('taskProjField').value;
 
-  console.log('test1');
   // Don't complete function action if no input provided
-  if (!taskName || !taskDescription || !taskDueDate || !taskProject) return;
-  console.log('test2');
+  if (!taskName || !taskDescription || !unformattedDate || !taskProject) return;
+
+  // Format due date
+  const taskDueDate = format(
+    new Date(parseISO(document.getElementById('taskDateField').value)),
+    'MMM do y'
+  );
 
   // Create task object and add it to the parent project's [tasks] field
   const projectNames = Project.projectList.map((x) => x.name);
@@ -111,13 +98,14 @@ export function addTask(e) {
   const newTaskDelete = document.createElement('div');
   newTaskDelete.classList.add('task-delete');
   newTaskDelete.textContent = 'x';
+  newTaskDelete.addEventListener('click', removeTask);
 
   const newTaskName = document.createElement('h2');
   newTaskName.classList.add('task-name');
   newTaskName.textContent = taskName;
 
   const newTaskDescription = document.createElement('p');
-  newTaskDescription.add('task-description');
+  newTaskDescription.classList.add('task-description');
   newTaskDescription.textContent = taskDescription;
 
   const newTaskDueDate = document.createElement('p');
@@ -131,6 +119,7 @@ export function addTask(e) {
   const newTaskComplete = document.createElement('input');
   newTaskComplete.classList.add('task-complete');
   newTaskComplete.setAttribute('type', 'checkbox');
+  newTaskComplete.addEventListener('click', toggleComplete);
 
   // Append task element to parent project's content child div
   newTask.appendChild(newTaskDelete);
@@ -140,7 +129,8 @@ export function addTask(e) {
   newTask.appendChild(newTaskProject);
   newTask.appendChild(newTaskComplete);
 
-  const projectContent = parentProject.children[3];
+  const projectContent = document.getElementsByName(parentProject.name)[0]
+    .children[3];
   projectContent.appendChild(newTask);
 
   // Clear values and close form
@@ -153,9 +143,41 @@ export function addTask(e) {
   taskForm.classList.remove('active');
 }
 
-export function removeTask(e) {}
+export function removeTask(e) {
+  // Remove task from parent project's task list
+  const task = e.target.parentElement;
+  const parentProjName = task.children[4].textContent;
+  const projNames = Project.projectList.map((x) => x.name);
+  const projObj = Project.projectList[projNames.indexOf(parentProjName)];
+  const allTasks = projObj.getTasks();
+  const taskNames = projObj.getTaskNames();
+  const name = task.children[1].textContent;
+  const idx = taskNames.indexOf(name);
+  const taskObj = allTasks[idx];
+  projObj.removeTask(taskObj);
 
-export function toggleComplete(e) {}
+  // Delete task DOM element
+  task.remove();
+}
+
+export function toggleComplete(e) {
+  const checkBox = e.target;
+  const task = e.target.parentElement;
+  const taskName = task.children[1].textContent;
+  const projName = task.children[4].textContent;
+
+  const projNames = Project.projectList.map((x) => x.name);
+  const projObj = Project.projectList[projNames.indexOf(projName)];
+  const taskObj = projObj.getTasks()[projObj.getTaskNames().indexOf(taskName)];
+
+  const currentStatus = taskObj.getComplete();
+
+  if (currentStatus) {
+    taskObj.setComplete(false);
+  } else if (!currentStatus) {
+    taskObj.setComplete(true);
+  }
+}
 
 // Advanced functionality to add later
 // export function modifyTask(e) {}

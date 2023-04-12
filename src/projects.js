@@ -4,9 +4,12 @@ export const projectList = [];
 window.projectList = projectList;
 
 export default class Project {
+  #tasks;
+
   constructor(name, description) {
     this.name = name;
     this.description = description;
+    this.#tasks = [];
   }
 
   get name() {
@@ -33,24 +36,21 @@ export default class Project {
     this._description = value;
   }
 
-  // TODO: Bind methods and re-add 'this.' notation to access appropriate fields'
-  tasks = [];
-
   getTasks = () => {
-    return tasks;
+    return this.#tasks;
   };
 
   getTaskNames = () => {
-    return tasks.map((x) => x.name);
+    return this.#tasks.map((x) => x.name);
   };
 
   addTask = (task) => {
-    tasks.push(task);
+    this.#tasks.push(task);
   };
 
   removeTask = (task) => {
-    const idx = gettaskNames().indexOf(task.name);
-    tasks.splice(idx, 1);
+    const idx = this.getTaskNames().indexOf(task.name);
+    this.#tasks.splice(idx, 1);
   };
 }
 
@@ -100,6 +100,7 @@ export function addProject(e) {
   // Create project DOM element and add sub-components
   const newProj = document.createElement('div');
   newProj.classList.add('project');
+  newProj.setAttribute('name', projName);
 
   const newProjDelete = document.createElement('div');
   newProjDelete.classList.add('proj-delete');

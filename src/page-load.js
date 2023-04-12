@@ -139,6 +139,7 @@ export default function () {
   taskDateInput.placeholder = 'DD/MM/YYYY';
   taskDateInput.required = true;
   taskDateInput.id = 'taskDateField';
+  taskDateInput.setAttribute('max', '2999-12-31');
   taskDateInput.classList.add('form-element');
 
   const taskProjLabel = document.createElement('label');
