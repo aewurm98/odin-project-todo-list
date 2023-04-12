@@ -5,6 +5,9 @@ import { format, isPast, parseISO } from 'date-fns';
 // Import key information from Projects
 import projectDefault, * as Project from './projects.js';
 
+// Import Storage
+import { defaultExport, todoStorage } from './storage.js';
+
 export default class Task {
   #complete;
   constructor(name, description, dueDate, project) {
@@ -141,6 +144,10 @@ export function addTask(e) {
 
   const taskForm = document.getElementById('task-form');
   taskForm.classList.remove('active');
+
+  // Update Storage
+  todoStorage.updateStoredProjectList();
+  todoStorage.saveProjectList();
 }
 
 export function removeTask(e) {
@@ -158,6 +165,10 @@ export function removeTask(e) {
 
   // Delete task DOM element
   task.remove();
+
+  // Update storage
+  todoStorage.updateStoredProjectList();
+  todoStorage.saveProjectList();
 }
 
 export function toggleComplete(e) {
@@ -177,6 +188,10 @@ export function toggleComplete(e) {
   } else if (!currentStatus) {
     taskObj.setComplete(true);
   }
+
+  // Update storage
+  todoStorage.updateStoredProjectList();
+  todoStorage.saveProjectList();
 }
 
 // Advanced functionality to add later

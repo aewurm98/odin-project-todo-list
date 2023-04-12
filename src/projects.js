@@ -1,5 +1,8 @@
 import modalDefault from './modals';
 
+// Import Storage
+import { defaultExport, todoStorage } from './storage.js';
+
 export const projectList = [];
 window.projectList = projectList;
 
@@ -131,6 +134,10 @@ export function addProject(e) {
   document.getElementById('projDescriptionField').value = '';
   const projForm = document.getElementById('project-form');
   projForm.classList.remove('active');
+
+  // Update storage
+  todoStorage.updateStoredProjectList();
+  todoStorage.saveProjectList();
 }
 
 export function removeProject(e) {
@@ -164,6 +171,10 @@ export function removeProject(e) {
     removeTask.removeEventListener('click', modalDefault);
     removeTask.classList.remove('active');
   }
+
+  // Update storage
+  todoStorage.updateStoredProjectList();
+  todoStorage.saveProjectList();
 }
 
 // Additional functionality to add later

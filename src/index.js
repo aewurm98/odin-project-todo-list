@@ -7,7 +7,8 @@ import loadPage from './page-load.js';
 import * as Project from './projects.js';
 import * as Todos from './todos.js';
 import * as Modals from './modals.js';
-
+import * as Storage from './storage.js';
+s
 // Initialize content
 loadPage();
 
