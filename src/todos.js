@@ -69,6 +69,8 @@ export default class Task {
   };
 }
 
+// TODO: Add logic to check for and prevent projecs with duplicate names
+
 export function addTask(e) {
   e.preventDefault();
 

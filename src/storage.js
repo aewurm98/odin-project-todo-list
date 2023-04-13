@@ -133,7 +133,7 @@ export function buildTaskFromMemory(
   let task = new Todo.default(
     taskName,
     taskDescription,
-    taskDueDate,
+    unformattedDate,
     taskProject
   );
   parentProject.addTask(task);

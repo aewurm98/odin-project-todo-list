@@ -24,6 +24,7 @@ const submitProj = document.getElementById('projSubmit');
 const taskForm = document.getElementById('task-form');
 const projectForm = document.getElementById('project-form');
 const formEscapes = document.querySelectorAll('.form-close');
+const filter = document.getElementById('filter');
 
 // Add relevant event listeners
 
@@ -34,3 +35,9 @@ submitTask.addEventListener('click', Todos.addTask);
 
 // Modal Event Listeners
 formEscapes.forEach((btn) => btn.addEventListener('click', Modals.deactivate));
+
+// Filter Event Listener
+filter.addEventListener('input', Project.filterProject);
+
+// Clear Event Listener
+clear.addEventListener('click', Project.clearFilter);

@@ -57,6 +57,8 @@ export default class Project {
   };
 }
 
+// TODO: Add logic to check for and prevent projecs with duplicate names
+
 export function addProject(e) {
   e.preventDefault();
 
@@ -175,6 +177,36 @@ export function removeProject(e) {
   // Update storage
   todoStorage.updateStoredProjectList();
   todoStorage.saveProjectList();
+}
+
+export function filterProject(e) {
+  const searchValue = e.target.value;
+  const projNames = projectList.map((x) => x.name);
+
+  console.log(projNames);
+
+  if (projNames.includes(searchValue)) {
+    const idx = projNames.indexOf(searchValue);
+
+    for (let i = 0; i < projNames.length; i++) {
+      if (i != idx) {
+        const proj = document.getElementsByClassName('project')[i];
+        proj.style.display = 'none';
+      }
+    }
+  }
+}
+
+export function clearFilter(e) {
+  // Add DOM elements back to display
+  const projects = document.getElementsByClassName('project');
+  for (let i = 0; i < projects.length; i++) {
+    projects[i].style.display = 'flex';
+  }
+
+  // Clear filter field text
+  const filterText = document.getElementById('filter');
+  filterText.value = '';
 }
 
 // Additional functionality to add later
