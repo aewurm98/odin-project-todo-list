@@ -7,12 +7,12 @@ export const projectList = [];
 window.projectList = projectList;
 
 export default class Project {
-  #tasks;
+  tasks;
 
   constructor(name, description) {
     this.name = name;
     this.description = description;
-    this.#tasks = [];
+    this.tasks = [];
   }
 
   get name() {
@@ -40,20 +40,20 @@ export default class Project {
   }
 
   getTasks = () => {
-    return this.#tasks;
+    return this.tasks;
   };
 
   getTaskNames = () => {
-    return this.#tasks.map((x) => x.name);
+    return this.tasks.map((x) => x.name);
   };
 
   addTask = (task) => {
-    this.#tasks.push(task);
+    this.tasks.push(task);
   };
 
   removeTask = (task) => {
     const idx = this.getTaskNames().indexOf(task.name);
-    this.#tasks.splice(idx, 1);
+    this.tasks.splice(idx, 1);
   };
 }
 

@@ -9,13 +9,13 @@ import projectDefault, * as Project from './projects.js';
 import { defaultExport, todoStorage } from './storage.js';
 
 export default class Task {
-  #complete;
+  complete;
   constructor(name, description, dueDate, project) {
     this.name = name;
     this.description = description;
     this.dueDate = dueDate;
     this.project = project;
-    this.#complete = false;
+    this.complete = false;
   }
 
   get name() {
@@ -61,11 +61,11 @@ export default class Task {
   };
 
   getComplete = () => {
-    return this.#complete;
+    return this.complete;
   };
 
   setComplete = (value) => {
-    this.#complete = value;
+    this.complete = value;
   };
 }
 
@@ -82,16 +82,13 @@ export function addTask(e) {
   if (!taskName || !taskDescription || !unformattedDate || !taskProject) return;
 
   // Format due date
-  const taskDueDate = format(
-    new Date(parseISO(document.getElementById('taskDateField').value)),
-    'MMM do y'
-  );
+  const taskDueDate = format(new Date(parseISO(unformattedDate)), 'MMM do y');
 
   // Create task object and add it to the parent project's [tasks] field
   const projectNames = Project.projectList.map((x) => x.name);
   const parentProject = Project.projectList[projectNames.indexOf(taskProject)];
 
-  let task = new Task(taskName, taskDescription, taskDueDate, taskProject);
+  let task = new Task(taskName, taskDescription, unformattedDate, taskProject);
   parentProject.addTask(task);
 
   // Create task DOM element and add sub-components

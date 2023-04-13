@@ -8,9 +8,12 @@ import * as Project from './projects.js';
 import * as Todos from './todos.js';
 import * as Modals from './modals.js';
 import * as Storage from './storage.js';
-s
+
 // Initialize content
 loadPage();
+
+// Restore local memory
+Storage.loadFromStorage();
 
 // Gather declarations for interactive elements
 const addProj = document.querySelector('.new-proj.btn.active');
